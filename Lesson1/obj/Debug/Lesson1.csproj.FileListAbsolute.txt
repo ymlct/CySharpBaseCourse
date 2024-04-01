@@ -1,0 +1,6 @@
+C:\Users\yam\RiderProjects\CySharpBaseCourse\Lesson1\bin\Debug\Lesson1.exe
+C:\Users\yam\RiderProjects\CySharpBaseCourse\Lesson1\bin\Debug\Lesson1.pdb
+C:\Users\yam\RiderProjects\CySharpBaseCourse\Lesson1\obj\Debug\Lesson1.csproj.AssemblyReference.cache
+C:\Users\yam\RiderProjects\CySharpBaseCourse\Lesson1\obj\Debug\Lesson1.csproj.CoreCompileInputs.cache
+C:\Users\yam\RiderProjects\CySharpBaseCourse\Lesson1\obj\Debug\Lesson1.exe
+C:\Users\yam\RiderProjects\CySharpBaseCourse\Lesson1\obj\Debug\Lesson1.pdb
