@@ -1,0 +1,6 @@
+/Users/yaromz/Projects/work/CySharpCourse/CySharpBaseCourse/Lesson1/L1Task2/bin/Debug/L1Task2.exe
+/Users/yaromz/Projects/work/CySharpCourse/CySharpBaseCourse/Lesson1/L1Task2/bin/Debug/L1Task2.pdb
+/Users/yaromz/Projects/work/CySharpCourse/CySharpBaseCourse/Lesson1/L1Task2/obj/Debug/L1Task2.csproj.AssemblyReference.cache
+/Users/yaromz/Projects/work/CySharpCourse/CySharpBaseCourse/Lesson1/L1Task2/obj/Debug/L1Task2.csproj.CoreCompileInputs.cache
+/Users/yaromz/Projects/work/CySharpCourse/CySharpBaseCourse/Lesson1/L1Task2/obj/Debug/L1Task2.exe
+/Users/yaromz/Projects/work/CySharpCourse/CySharpBaseCourse/Lesson1/L1Task2/obj/Debug/L1Task2.pdb
