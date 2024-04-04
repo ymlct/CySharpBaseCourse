@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 namespace L2Task3
 {
-    
-    /*
+     /*
     Урок 2, Задание 4
     Создайте проект по шаблону Console Application.
     Требуется:
@@ -77,8 +76,8 @@ namespace L2Task3
         internal class Catalog
         {
 
-            private readonly Dictionary<string, Product> _productsByArticle = new();
-            private readonly Dictionary<string, double> _pricesByArticle = new();
+            private readonly Dictionary<string, Product> _productsByArticle = new Dictionary<string, Product>();
+            private readonly Dictionary<string, double> _pricesByArticle = new Dictionary<string, double>();
 
             public void AddProduct(Product productToAdd, double price)
             {

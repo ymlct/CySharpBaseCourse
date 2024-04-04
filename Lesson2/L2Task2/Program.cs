@@ -2,7 +2,6 @@
 
 namespace L2Task2
 {
-    
     /*
     Урок 2, Задание 3
     Создайте проект по шаблону Console Application.

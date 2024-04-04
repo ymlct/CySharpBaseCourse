@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace ConsoleApplication1
+namespace L2Task1
 {
-    
     /*
     Урок 2, Задание 2
     Создайте проект по шаблону Console Application.

@@ -5,11 +5,11 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{FBE87272-8365-4279-AA5C-ADCD223959D4}</ProjectGuid>
+        <ProjectGuid>{78DC3BB7-55C3-4970-B5D8-936E5F1D467E}</ProjectGuid>
         <OutputType>Exe</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>L2Task2</RootNamespace>
-        <AssemblyName>L2Task2</AssemblyName>
+        <RootNamespace>L2Task3</RootNamespace>
+        <AssemblyName>L2Task3</AssemblyName>
         <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

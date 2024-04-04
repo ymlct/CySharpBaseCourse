@@ -1,6 +1,0 @@
-C:\Users\yam\RiderProjects\CySharpBaseCourse\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
-C:\Users\yam\RiderProjects\CySharpBaseCourse\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
-C:\Users\yam\RiderProjects\CySharpBaseCourse\ConsoleApplication1\obj\Debug\ConsoleApplication1.csproj.AssemblyReference.cache
-C:\Users\yam\RiderProjects\CySharpBaseCourse\ConsoleApplication1\obj\Debug\ConsoleApplication1.csproj.CoreCompileInputs.cache
-C:\Users\yam\RiderProjects\CySharpBaseCourse\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
-C:\Users\yam\RiderProjects\CySharpBaseCourse\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
