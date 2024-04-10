@@ -15,10 +15,17 @@ namespace L4Task2
     {
         public static void Main(string[] args)
         {
-
             Player player = new Player();
+
+            IPlayable playable = player;
+            playable.Play();
+            playable.Pause();
+            playable.Stop();
             
-            player.Pause();
+            IRecordable recordable = player;
+            recordable.Record();
+            recordable.Pause();
+            recordable.Stop();
         }
     }
 
@@ -29,46 +36,41 @@ namespace L4Task2
         void Stop();
     }
     
-    interface IRecodable
+    public interface IRecordable
     {
         void Record();
         void Pause();
         void Stop();
     }
 
-    internal class Player : IPlayable, IRecodable
+    public class Player : IPlayable, IRecordable
     {
         
-        public void Play()
+        void IPlayable.Play()
         {
             Console.WriteLine("Playable.Play");
         }
-        public void PausePlaying()
-        {
-            // Pause();
-        }
         
-        public void Pause()
+        void IPlayable.Pause()
         {
             Console.WriteLine("Playable.Pause");
         }
 
-        public void Stop()
+        void IPlayable.Stop()
         {
             Console.WriteLine("Playable.Stop");
         }
 
         
-        public void Record()
+        void IRecordable.Record()
         {
             Console.WriteLine("IRecodable.Record");
         }
-        
-        void IRecodable.Pause()
+        void IRecordable.Pause()
         {
             Console.WriteLine("IRecodable.Pause");
         }
-        void IRecodable.Stop()
+        void IRecordable.Stop()
         {
             Console.WriteLine("IRecodable.Stop");
         }
