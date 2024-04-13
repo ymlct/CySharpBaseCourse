@@ -1,4 +1,6 @@
-﻿namespace L5Task3
+﻿using System;
+
+namespace L5Task3
 {
     
     /*
@@ -38,11 +40,90 @@
                     price: 30000f
                 )
             };
-            
             Store store = new Store(articles: articles);
-            
+
+            var shouldContinue = true;
+            while (shouldContinue)
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine(new string('-', 20));
+                Console.WriteLine("\n");
+
+                try
+                {
+                    Console.WriteLine("Вы можете найти товар в магазине по его названию либо по его номеру.");
+                    Console.WriteLine("Для поиска по названию введите '1', для поиска по номеру - '2', для выхода - '0'.");
+                    var userInput = Console.ReadLine();
+
+                    switch (userInput)
+                    {
+                        case "1":
+                            FindProductByName(store: store);
+                            break; 
+                        
+                        case "2":
+                            FindProductById(store: store);
+                            break; 
+                        
+                        case "0":
+                            shouldContinue = false;
+                            break;
+                        
+                        default: 
+                            throw new Exception("");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Введено неверное значение. Попробуйте снова.");
+                }
+            }
+
+        }
+        
+        
+        private static void FindProductByName(Store store)
+        {
+            Console.WriteLine("Введите наименование искомого товара.");
+            var userInput = Console.ReadLine();
+            var article = store[userInput];
+            ShowProductFoundMessage();
+            PrintArticle(article);
+        }
+        
+        private static void FindProductById(Store store)
+        {
+            Console.WriteLine("Введите номер искомого товара.");
+            var userInput = Console.ReadLine();
+            var articleNumber = Convert.ToInt32(userInput);
+            var article = store[articleNumber];
+            ShowProductFoundMessage();
+            PrintArticle(article);
+        }
+        
+        private static void PrintArticle(Article article)
+        {
+            if (article != null)
+            {
+                article.Print();
+            }
+            else
+            {
+                ShowProductIsAbsentMessage();
+            }
+        }
+        
+        private static void ShowProductFoundMessage()
+        {
+            Console.WriteLine("\nНайден товар:");
+        }
+        private static void ShowProductIsAbsentMessage()
+        {
+            Console.WriteLine("\nИскомого товара нет в наличии.");
         }
     }
+    
+   
 
     internal class Article
     {
@@ -75,6 +156,11 @@
             _storeName = storeName;
             _price = price;
         }
+
+        internal void Print()
+        {
+            Console.WriteLine($"Наименование: {_productName}, цена: {_price}.");
+        }
     }
     
     internal class Store
@@ -89,19 +175,26 @@
         }
 
 
-        public Store(Article[] articles)
+        internal Store(Article[] articles)
         {
             _articles = articles;
         }
 
 
-        private Article this[int index]
+        internal Article this[int index]
         {
-            get => _articles[index];
+            get
+            {
+                if (index >= 0 && index < _articles.Length)
+                {
+                    return _articles [index];
+                }
+                return null;
+            }
             set => _articles[index] = value;
         }
-        
-        private Article this[string articleName]
+
+        internal Article this[string articleName]
         {
             get
             {

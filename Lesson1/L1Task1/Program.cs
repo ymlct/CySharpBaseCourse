@@ -32,7 +32,7 @@ namespace Task1
             var side2 = Convert.ToDouble(side2AsString);
             
             var rect = new Rectangle(side1: side1, side2: side2);
-
+            
             var rectArea = rect.AreaCalculator();
             var rectPerimeter = rect.PerimeterCalculator();
             
