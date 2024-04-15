@@ -40,6 +40,9 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="L6Task1.cs" />
+        <Compile Include="L6Task2.cs" />
+        <Compile Include="L6Task3.cs" />
         <Compile Include="Program.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>

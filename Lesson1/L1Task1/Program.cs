@@ -22,7 +22,18 @@ namespace Task1
     {
         public static void Main(string[] args)
         {
-            
+            // Execute1();
+
+
+            // L6Task3 l6t3 = new L6Task3();
+            // l6t3.Execute();
+
+            L6Task1 l6t1 = new L6Task1();
+            l6t1.Execute();
+        }
+
+        private static void Execute1()
+        {
             Console.WriteLine("Введите длину стороны 1");
             var side1AsString = Console.ReadLine();
             var side1 = Convert.ToDouble(side1AsString);
