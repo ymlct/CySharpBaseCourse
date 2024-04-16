@@ -1,18 +1,18 @@
-using System;
+﻿using System;
 
-namespace Task1
+namespace L6Task3
 {
     /*
      Задание 4
      Создайте проект по шаблону Console Application.
      Требуется: Создать расширяющий метод для целочисленного массива, который сортирует элементы массива по возрастанию.
      */
-    public class L6Task3
+    internal class Program
     {
-        internal void Execute()
+        public static void Main(string[] args)
         {
-            // int[] arr = { 5, 2, 6, 0, -1, 1, 3, 4 };
-            int[] arr = new int[6];
+            int[] arr = { 5, 2, 6, 0, -1, 1, 3, 4 };
+            // int[] arr = new int[6];
             arr[3] = 4;
             arr[5] = -1;
             

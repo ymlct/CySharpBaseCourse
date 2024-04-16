@@ -1,18 +1,17 @@
-using System;
+﻿using System;
 
-namespace Task1
+namespace L6Task1
 {
-    
     /*
      Задание 2
-     Создайте проект по шаблону Console Application.      
-     Требуется:      
-     - Создать статический класс FindAndReplaceManager с методом void FindNext(string str) для поиска по книге из примера урока 005_Delegation. 
+     Создайте проект по шаблону Console Application.
+     Требуется:
+     - Создать статический класс FindAndReplaceManager с методом void FindNext(string str) для поиска по книге из примера урока 005_Delegation.
      - При вызове этого метода, производится последовательный поиск строки в книге.
      */
-    public class L6Task1
+    internal class Program
     {
-        public void Execute()
+        public static void Main(string[] args)
         {
             var author = new Author("Joshua Bloch");
             var title = new Title("Effective Java Programming Language Guide");
@@ -20,7 +19,7 @@ namespace Task1
                 "This highly readable book tells you how to use the Java programming language and its most fundamental libraries to best effect ...",
                 "Objects...",
                 "Inheritance... in Java"
-                );
+            );
             
             Book book = new Book(
                 title: title,
@@ -32,7 +31,7 @@ namespace Task1
         }
     }
     
-    static class FindAndReplaceManager
+     static class FindAndReplaceManager
     {
         static public void FindNext(Book book, string str)
         {
