@@ -14,6 +14,45 @@
     {
         public static void Main(string[] args)
         {
+
+            Accauntant accauntant = new Accauntant();
+            Worker worker1 = new Worker("Richard Hendrix", Position.SeniorSpecialist);
+            Worker worker2 = new Worker("Bertram Bertram", Position.MiddleSpecialist);
+            Worker worker3 = new Worker("Dinesh Chugtai", Position.JuniorSpecialist);
+            Worker worker4 = new Worker("Erlich Bachman", Position.TraineeSpecialist);
+            
+            accauntant.AskForBonus(worker1, 140);
+            accauntant.AskForBonus(worker2, 140);
+            accauntant.AskForBonus(worker3, 135);
+            accauntant.AskForBonus(worker4, 20);
         }
+    }
+
+    internal class Accauntant
+    {
+        internal bool AskForBonus(Worker worker, int hours)
+        {
+            return (int) worker.Position <= hours;
+        }
+    }
+    
+    internal class Worker
+    {
+        internal string Name { get; private set; }
+        internal Position Position { get; private set; }
+
+        public Worker(string name, Position position)
+        {
+            Name = name;
+            Position = position;
+        }
+    }
+
+    internal enum Position
+    {
+        TraineeSpecialist = 140,
+        JuniorSpecialist = 135,
+        MiddleSpecialist = 130,
+        SeniorSpecialist = 120
     }
 }

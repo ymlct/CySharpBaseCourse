@@ -15,7 +15,40 @@
     {
         public static void Main(string[] args)
         {
+
+            Train[] trains = new Train[8];
+            
+            for (var i = 0; i < trains.Length; i++)
+            {
+                var number = i + 1;
+                trains[i] = new Train(
+                    destinationPointName: $"Назначение {number}",
+                    number: number,
+                    departureTime: $"0{number}:00:00"
+                );
+            }
         }
     }
-    
+
+    internal struct Train
+    {
+        public string DestinationPointName { get; private set; }
+
+        private int _number;
+        public int Number { get => _number; private set => _number = value; }
+        
+        public string DepartureTime { get; private set; }
+
+        public Train(
+            string destinationPointName,
+            int number,
+            string departureTime
+            )
+        {
+            DestinationPointName = destinationPointName;
+            _number = number;
+            DepartureTime = departureTime;
+        }
+    }
+
 }
