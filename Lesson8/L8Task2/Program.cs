@@ -1,14 +1,16 @@
-﻿namespace L8Task2
+﻿using System;
+
+namespace L8Task2
 {
     /*
     Задание 3
     Cоздайте проект по шаблону Console Application.
-    Создайте перечисление, в котором будут содержаться должности сотрудников как имена констант.
-    Присвойте каждой константе значение, задающее количество часов, которые должен отработать
-    сотрудник за месяц.
-    Создайте класс Accauntant с методом bool AskForBonus(Post worker, int hours), отражающее
-    давать или нет сотруднику премию. Если сотрудник отработал больше положеных часов в месяц, то ему
-    положена премия.
+    - Создайте перечисление, в котором будут содержаться должности сотрудников как имена констант.
+    - Присвойте каждой константе значение, задающее количество часов, которые должен отработать
+      сотрудник за месяц.
+    - Создайте класс Accauntant с методом bool AskForBonus(Post worker, int hours), отражающее
+      давать или нет сотруднику премию. Если сотрудник отработал больше положеных часов в месяц, то ему
+      положена премия.
      */
     internal class Program
     {
@@ -21,10 +23,18 @@
             Worker worker3 = new Worker("Dinesh Chugtai", Position.JuniorSpecialist);
             Worker worker4 = new Worker("Erlich Bachman", Position.TraineeSpecialist);
             
-            accauntant.AskForBonus(worker1, 140);
-            accauntant.AskForBonus(worker2, 140);
-            accauntant.AskForBonus(worker3, 135);
-            accauntant.AskForBonus(worker4, 20);
+            var yes = "Да";
+            var no = "Нет";
+            
+            var worker1HasBonus = accauntant.AskForBonus(worker1, 140) ? yes : no;
+            var worker2HasBonus = accauntant.AskForBonus(worker2, 140) ? yes : no;
+            var worker3HasBonus = accauntant.AskForBonus(worker3, 135) ? yes : no;
+            var worker4HasBonus = accauntant.AskForBonus(worker4, 20) ? yes : no;
+            
+            Console.WriteLine($"{worker1.Name} получит премию? {worker1HasBonus}");
+            Console.WriteLine($"{worker2.Name} получит премию? {worker2HasBonus}");
+            Console.WriteLine($"{worker2.Name} получит премию? {worker3HasBonus}");
+            Console.WriteLine($"{worker3.Name} получит премию? {worker4HasBonus}");
         }
     }
 
