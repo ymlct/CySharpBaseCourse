@@ -1,34 +1,110 @@
 ﻿using System;
 
-/*
-  Задание 2
-Используя Visual Studio, создайте проект по шаблону Console Application.
-Создайте класс MyList<T>. Реализуйте в простейшем приближении возможность использования его
-экземпляра аналогично экземпляру класса List<T>. Минимально требуемый интерфейс
-взаимодействия с экземпляром, должен включать метод добавления элемента, индексатор для
-получения значения элемента по указанному индексу и свойство только для чтения для получения
-общего количества элементов.
-Задание 3
-Используя Visual Studio, создайте проект по шаблону Console Application.
-Создайте класс MyDictionary<TKey,TValue>. Реализуйте в простейшем приближении возможность
-использования его экземпляра аналогично экземпляру класса Dictionary (Урок 6 пример 5).
-Минимально требуемый интерфейс взаимодействия с экземпляром, должен включать метод
-добавления пар элементов, индексатор для получения значения элемента по указанному индексу и
-свойство только для чтения для получения общего количества пар элементов.
-Задание 4
-Используя Visual Studio, создайте проект по шаблону Console Application.
-Создайте расширяющий метод: public static T[] GetArray<T>(this MyList<T> list)
-Примените расширяющий метод к экземпляру типа MyList<T>, разработанному в домашнем задании 2
-для данного урока. Выведите на экран значения элементов массива, который вернул расширяющий
-метод GetArray().
- */
 namespace L10Task1
 {
+    /*
+    Задание 2
+    Создайте проект по шаблону Console Application.
+     - Создайте класс MyList<T>. Реализуйте в простейшем приближении возможность использования его
+    экземпляра аналогично экземпляру класса List<T>. 
+     - Минимально требуемый интерфейс взаимодействия с экземпляром, должен включать:
+        - метод добавления элемента, 
+        - индексатор для получения значения элемента по указанному индексу и 
+        - свойство только для чтения для получения общего количества элементов.
+     */
     internal class Program
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("L10Task1");
+
+            MyList<MyListElement> myList = new MyList<MyListElement>();
+            
+            myList.Add(new MyListElement("A"));
+            myList.Add(new MyListElement("B"));
+            Console.WriteLine(myList.Size);
+            
+            myList.Add(new MyListElement("C"));
+            Console.WriteLine(myList.Size);
+
+            PrintIfNotNull(myList, 1);
+            PrintIfNotNull(myList, 3);
         }
+
+        private static void PrintIfNotNull(MyList<MyListElement> list, int idx)
+        {
+            var element = list[idx];
+            if (element != null) 
+                Console.WriteLine($"Елемент {element.Name}");
+            else 
+                Console.WriteLine($"Елемент null");
+
+
+        }
+    }
+
+    internal class MyListElement
+    {
+        public string Name { get; }
+
+        public MyListElement(string name)
+        {
+            Name = name;
+        }
+    }
+
+    internal class MyList<T> where T : class
+    {
+        
+        public int Size => _elements.Length;
+        
+        private T[] _elements;
+
+        private const int InitialCapacity = 2;
+        
+        private int _capacityUsedPointer = 0;
+        
+        internal MyList(int initialCapacity = InitialCapacity)
+        {
+            _elements = new T[initialCapacity];
+        }
+
+        internal void Add(T element)
+        {
+            if (IsWithinBounds(_capacityUsedPointer))
+            {
+                _elements[_capacityUsedPointer] = element;
+                _capacityUsedPointer++; 
+            }
+            else
+            {
+                T[] newElements = new T[_elements.Length * 2];
+                Copy(_elements, ref newElements);
+
+                _elements = newElements;
+            }
+        }
+
+        internal T this[int index]
+        {
+            get
+            {
+                if (index >= 0 && index < _capacityUsedPointer) return _elements[index];
+                else return null;
+            }
+        }
+
+        private void Copy(T[] from, ref T[] to)
+        {
+            for (var i = 0; i < from.Length; i++)
+            {
+                to[i] = from[i];
+            }
+        }
+
+        private bool IsWithinBounds(int pointer)
+        {
+            return pointer >= 0 && pointer < _elements.Length;
+        }
+
     }
 }
