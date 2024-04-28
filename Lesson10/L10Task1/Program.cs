@@ -52,16 +52,16 @@ namespace L10Task1
         }
     }
 
-    internal class MyList<T> where T : class
+    internal class MyList<T>
     {
         
-        public int Size => _elements.Length;
+        public int Size => _count;
         
         private T[] _elements;
 
         private const int InitialCapacity = 2;
         
-        private int _capacityUsedPointer = 0;
+        private int _count = 0;
         
         internal MyList(int initialCapacity = InitialCapacity)
         {
@@ -70,26 +70,24 @@ namespace L10Task1
 
         internal void Add(T element)
         {
-            if (IsWithinBounds(_capacityUsedPointer))
-            {
-                _elements[_capacityUsedPointer] = element;
-                _capacityUsedPointer++; 
-            }
-            else
+            if (!IsWithinBounds(_count))
             {
                 T[] newElements = new T[_elements.Length * 2];
                 Copy(_elements, ref newElements);
 
                 _elements = newElements;
             }
+            
+            _elements[_count] = element;
+            _count++; 
         }
 
         internal T this[int index]
         {
             get
             {
-                if (index >= 0 && index < _capacityUsedPointer) return _elements[index];
-                else return null;
+                if (index >= 0 && index < _count) return _elements[index];
+                throw new IndexOutOfRangeException();
             }
         }
 
