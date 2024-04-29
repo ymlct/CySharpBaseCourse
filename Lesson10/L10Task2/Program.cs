@@ -51,19 +51,13 @@ namespace L10Task2
             Console.WriteLine(elementX.Name);
             Console.WriteLine(elementY.Name);
             Console.WriteLine(elementZ.Name);
-        }
-    }
-    
-    internal class DictValue
-    {
-        public string Name { get; }
+            
+            Console.WriteLine(dict.Count);
 
-        public DictValue(string name)
-        {
-            Name = name;
         }
     }
     
+    // ключ элемента словаря 
     internal class DictKey
     {
         public string Val { get; }
@@ -95,11 +89,22 @@ namespace L10Task2
         // }
     }
     
+    // элемент словаря
+    internal class DictValue
+    {
+        public string Name { get; }
+
+        public DictValue(string name)
+        {
+            Name = name;
+        }
+    }
+    
     /*
      Value - хранимое в словаре значение
      Key - ключ для хранимого в словаре значения
      Entry - контейнер для Key и Value
-     Bucket - односторонний связанный список, состоящий из Value; используется для разрешения коллизий по хэшкоду
+     Bucket - односторонний связанный список, состоящий из Entry; используется для разрешения коллизий по хэшкоду от Key
      
      Принцип работы:
      1. Внутри есть два массива: 
@@ -108,22 +113,22 @@ namespace L10Task2
      1.2.1. Значение Key с помощью некоторых вычислений преобразуется в индекс в этом массиве.
      1.2.2. Под полученным индексом в этот массив записывается индекс из первого массива для соответствующего Entry.
      2. Когда происходит коллизия по хэшу от Key, и для очередной добавляемой пары Key Value возвращается Bucket, 
-     в котором уже есть другая пара Key Value, то в такой ситуации индекс (в массиве с Entry) записывается 
-     в поле Entry.Next, в результате чего формируется однонаправленный связанный список.                 
+     в котором уже есть другая пара Key Value, то в такой ситуации индекс (в массиве с Entry) для добавляемого элемента 
+     записывается в поле Entry.Next существующего элемента, в результате чего формируется однонаправленный связанный список.                 
     */
     internal class MyDict<TKey, TValue>
     {
+        private Entry[] _entries;
+        
         // хранит индексы Entry в _entries
         private int[] _bucketIndices;
-        
-        private Entry[] _entries;
 
         internal int Count { get; private set; }
         
         private const int InitialCapacity = 3;
         private const int DefPointerValue = -1;
-        
-        internal struct Entry
+
+        private struct Entry
         {
             internal int Hashcode;
 
@@ -132,12 +137,14 @@ namespace L10Task2
             internal TKey Key;
             
             internal TValue Value;
-            
         }
 
         public MyDict()
         {
-            _bucketIndices = InitBuckets(InitialCapacity);
+            _bucketIndices = new int[InitialCapacity];
+            // необходимо установить дефолтные значения, т.к. логика работы класса ожидает это 
+            SetBucketsWithDefaultValues(_bucketIndices);
+            
             _entries = new Entry[InitialCapacity];
             Count = 0;
         }
@@ -168,7 +175,8 @@ namespace L10Task2
             {
                 _bucketIndices[targetBucketIdx] = entryIndex;
             }
-            // иначе ищем последний элемент в связанном списке
+            // иначе ищем последний элемент в связанном списке;
+            // последним будет тот `Entry`, у которого в поле `Next` лежит `-1`
             else {
                 for (int i = _bucketIndices[targetBucketIdx]; i >= 0; i = _entries[i].Next)
                 {
@@ -217,16 +225,15 @@ namespace L10Task2
             return hashcode % capacity;
         }
 
-        private int[] InitBuckets(int size)
+        private void SetBucketsWithDefaultValues(int[] buckets)
         {
-            var buckets = new int[size];
             for (var i = 0; i < buckets.Length; i++)
             {
                 buckets[i] = DefPointerValue;
             }
-            return buckets;
         }
 
+        // увеличивает размер словаря
         private void IncreaseCapacity(
             int newCapacity,
             Entry[] fromEntries,
@@ -239,20 +246,20 @@ namespace L10Task2
             toBucketIndices = new int[newCapacity];
             toEntries = new Entry[newCapacity];
             
-            for (var i = 0; i < newCapacity; i++)
-            {
-                toBucketIndices[i] = DefPointerValue;
-            }
+            // необходимо установить дефолтные значения, т.к. логика работы класса ожидает это 
+            SetBucketsWithDefaultValues(toBucketIndices);
             
+            // т.к. механизм преобразования значения Key в индекс для Bucket использует текущий размер внутренних
+            // коллекций, то при их увеличении необходимо пересчитать индексы для всех ранее добавленных элементов 
             for (var i = 0; i < currentCapacity; i++)
             {
                 toEntries[i] = fromEntries[i];
                 
-                var updBucketIdx = ResolveBucketIdx(toEntries[i].Hashcode, newCapacity);
+                var recalcBucketIdx = ResolveBucketIdx(toEntries[i].Hashcode, newCapacity);
                 
-                if (toBucketIndices[updBucketIdx] == DefPointerValue) 
+                if (toBucketIndices[recalcBucketIdx] == DefPointerValue) 
                 {
-                    toBucketIndices[updBucketIdx] = i;
+                    toBucketIndices[recalcBucketIdx] = i;
                 }
             }
         }

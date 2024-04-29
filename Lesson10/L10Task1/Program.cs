@@ -32,13 +32,15 @@ namespace L10Task1
 
         private static void PrintIfNotNull(MyList<MyListElement> list, int idx)
         {
-            var element = list[idx];
-            if (element != null) 
+            try
+            {
+                var element = list[idx];
                 Console.WriteLine($"Елемент {element.Name}");
-            else 
-                Console.WriteLine($"Елемент null");
-
-
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 
