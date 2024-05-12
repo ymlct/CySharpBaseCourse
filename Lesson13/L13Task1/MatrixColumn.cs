@@ -39,7 +39,7 @@ namespace L13Task1
                 int speed = _random.Next(50, 150);
                 int charChainHeadPosition = 0;
 
-                // lock (block) // для 2х потоков можно не использовать
+                lock (block) // для 2х потоков можно не использовать
                 {
                     while (charChainHeadPosition <= _matrixSize + charChainCurrentLength)
                     {

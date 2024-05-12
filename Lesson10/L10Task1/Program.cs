@@ -35,7 +35,7 @@ namespace L10Task1
             try
             {
                 var element = list[idx];
-                Console.WriteLine($"Елемент {element.Name}");
+                Console.WriteLine($"Элемент {element.Name}");
             }
             catch (IndexOutOfRangeException ex)
             {

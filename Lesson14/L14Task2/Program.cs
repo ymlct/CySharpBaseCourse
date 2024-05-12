@@ -1,19 +1,75 @@
-﻿namespace L14Task2
+﻿using System;
+
+namespace L14Task2
 {
     /*
     Задание 3
-    Используя Visual Studio, создайте проект по шаблону Console Application.
-    Создайте коллекцию MyDictionary<TKey,TValue>. Реализуйте в простейшем приближении
-    возможность использования ее экземпляра аналогично экземпляру класса Dictionary<TKey,TValue>.
-    Минимально требуемый интерфейс взаимодействия с экземпляром, должен включать метод
-    добавления элемента, индексатор для получения значения элемента по указанному индексу и свойство
-    только для чтения для получения общего количества элементов. Реализуйте возможность перебора
-    элементов коллекции в цикле foreach.           
+    Создайте проект по шаблону Console Application.
+    - Создайте коллекцию MyDictionary<TKey,TValue>. Реализуйте в простейшем приближении
+      возможность использования ее экземпляра аналогично экземпляру класса Dictionary<TKey,TValue>.
+    - Минимально требуемый интерфейс взаимодействия с экземпляром, должен включать
+      - метод добавления элемента, 
+      - индексатор для получения значения элемента по указанному индексу и 
+      - свойство только для чтения для получения общего количества элементов. 
+    - Реализуйте возможность перебора элементов коллекции в цикле foreach.           
     */
     internal class Program
     {
         public static void Main(string[] args)
         {
+            MyDictionary<DictKey, DictValue> dict = new MyDictionary<DictKey, DictValue>();
+            
+            PrintElements(dict);
+            
+            var k1 = new DictKey("a");
+            var k2 = new DictKey("b");
+            var k31 = new DictKey("x");
+            var k32 = new DictKey("y");
+            var k33 = new DictKey("z");
+            
+            var v1 = new DictValue("A");
+            var v2 = new DictValue("B");
+            var v31 = new DictValue("X");
+            var v32 = new DictValue("Y");
+            var v33 = new DictValue("Z");
+            
+            dict.Add(k1, v1);
+            dict.Add(k2, v2);
+            dict.Add(k31, v31);
+            dict.Add(k32, v32);
+            dict.Add(k33, v33);
+
+            PrintElements(dict);
+        }
+        
+        private static void PrintElements (MyDictionary<DictKey, DictValue> dict)
+        {
+            foreach (DictValue element in dict)
+            {
+                Console.WriteLine($"Елемент {element.Name}");
+            }
+        }
+    }
+    
+    // ключ элемента словаря 
+    internal class DictKey
+    {
+        public string Val { get; }
+
+        public DictKey(string val)
+        {
+            Val = val;
+        }
+    }
+    
+    // элемент словаря
+    internal class DictValue
+    {
+        public string Name { get; }
+
+        public DictValue(string name)
+        {
+            Name = name;
         }
     }
 }
