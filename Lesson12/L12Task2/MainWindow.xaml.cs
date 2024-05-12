@@ -24,5 +24,32 @@ namespace L12Task2
         {
             InitializeComponent();
         }
+        
+        
+        public event EventHandler OnStartEvent = null;
+        
+        public event EventHandler OnStopEvent = null;
+        
+        public event EventHandler OnResetEvent = null;
+
+        public void SetTimerValue(string timerValue)
+        {
+        }
+
+        private void OnStartButtonClick(object sender, RoutedEventArgs e)
+        {
+            OnStartEvent?.Invoke(sender, e);
+        }
+        
+        private void OnStopButtonClick(object sender, RoutedEventArgs e)
+        {
+            OnStopEvent?.Invoke(sender, e);
+        }
+        
+        private void OnResetButtonClick(object sender, RoutedEventArgs e)
+        {
+            OnResetEvent?.Invoke(sender, e);
+        }
+
     }
 }
